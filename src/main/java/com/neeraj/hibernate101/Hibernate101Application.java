@@ -1,5 +1,6 @@
 package com.neeraj.hibernate101;
 
+import org.assertj.core.util.Lists;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,8 +36,7 @@ public class Hibernate101Application {
 			laptopRepository.save(new Laptop("Acer", 300L));
 			laptopRepository.save(new Laptop("MI", 400L));
 
-			student1.setLaptop(laptop1);
-			student2.setLaptop(laptop2);
+			student1.setLaptops(Lists.newArrayList(laptop1, laptop2));
 			repository.save(student1);
 			repository.save(student2);
 
