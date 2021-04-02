@@ -4,7 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import com.neeraj.hibernate101.dao.LaptopRepository;
 import com.neeraj.hibernate101.dao.StudentRepository;
+import com.neeraj.hibernate101.domain.Laptop;
 import com.neeraj.hibernate101.domain.Student;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,14 +19,26 @@ public class Hibernate101Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(StudentRepository repository) {
+	public CommandLineRunner demo(StudentRepository repository, LaptopRepository laptopRepository) {
 		return (args) -> {
 			// save a few customers
-			repository.save(new Student("Jack", "Bauer"));
-			repository.save(new Student("Chloe", "O'Brian"));
+			final Student student1 = new Student("Jack", "Bauer");
+			final Student student2 = new Student("Chloe", "O'Brian");
 			repository.save(new Student("Kim", "Bauer"));
 			repository.save(new Student("David", "Palmer"));
 			repository.save(new Student("Michelle", "Dessler"));
+
+			final Laptop laptop1 = new Laptop("Sony", 700L);
+			final Laptop laptop2 = new Laptop("Apple", 1200L);
+			laptopRepository.save(laptop1);
+			laptopRepository.save(laptop2);
+			laptopRepository.save(new Laptop("Acer", 300L));
+			laptopRepository.save(new Laptop("MI", 400L));
+
+			student1.setLaptop(laptop1);
+			student2.setLaptop(laptop2);
+			repository.save(student1);
+			repository.save(student2);
 
 			// fetch all customers
 			log.info("Customers found with findAll():");
