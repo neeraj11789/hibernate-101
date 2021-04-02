@@ -10,7 +10,7 @@ import com.neeraj.hibernate101.domain.Student;
  */
 public interface StudentRepository extends CrudRepository<Student, Long> {
 
-    List<Student> findByLastName(String lastName);
+//    List<Student> findByLastName(String lastName);
 
     Student findById(long id);
 }

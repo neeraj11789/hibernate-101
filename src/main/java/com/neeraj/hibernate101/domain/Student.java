@@ -22,12 +22,9 @@ public class Student {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
-
     public Student(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = new Name(firstName, "", lastName);
     }
+
+    private Name name;
 }
