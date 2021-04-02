@@ -39,7 +39,7 @@ public class Student {
 
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "student")
     @ToString.Exclude
     private List<Laptop> laptops = new ArrayList<>();
 }
