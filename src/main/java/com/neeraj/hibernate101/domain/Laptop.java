@@ -1,9 +1,12 @@
 package com.neeraj.hibernate101.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,8 +34,8 @@ public class Laptop {
     private Long price;
 
     @ToString.Exclude
-    @ManyToOne
-    private Student student;
+    @ManyToMany(mappedBy = "laptops")
+    private List<Student> student = new ArrayList<>();
 
     public Laptop(String company, Long price) {
         this.company = company;
